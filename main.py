@@ -12,7 +12,7 @@ from model.players import initPlayers
 
 # setup APIs
 from api.covid import covid_api # Blueprint import api definition
-from api.joke import joke_api # Blueprint import api definition
+from api.joke import joke_api # Blueprint import api definition; when you do import, it will store and be run here. 
 from api.user import user_api # Blueprint import api definition
 from api.player import player_api
 

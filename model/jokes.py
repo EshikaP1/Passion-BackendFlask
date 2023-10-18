@@ -45,6 +45,7 @@ def getJokes():
     return(jokes_data)
 
 # Joke getter
+# getting an element from the joke list. You get the joke based on the index.
 def getJoke(id):
     return(jokes_data[id])
 
