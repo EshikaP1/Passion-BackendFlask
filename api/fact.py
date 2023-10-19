@@ -22,7 +22,7 @@ responses.append(
     requests.put("https://api.cancer.gov" + "/jeer/" + num, headers={"Authorization": f"Bearer {api_key}"})  # add to jeer count
 )
 
-# obtain a random joke
+# obtain a random fact
 responses.append(
     requests.get("https://api.cancer.gov" + "/random", headers={"Authorization": f"Bearer {api_key}"})  # read a random joke
 )
