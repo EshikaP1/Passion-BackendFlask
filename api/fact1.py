@@ -6,6 +6,18 @@ app = Flask(__name__)
 # Load data from the CSV file
 data = pd.read_csv("/home/eneter/vscode/Passion-BackendFlask/api/cancer.csv")
 
+import os
+
+# Get the directory of your Flask app's root
+app_root = os.path.dirname(os.path.abspath(__file__))  # Assuming this code is in your Flask app file
+
+# Create the full path to your CSV file
+csv_path = os.path.join(app_root, 'api', 'cancer.csv')
+
+# Load data from the CSV file
+data = pd.read_csv(csv_path)
+
+
 # Define an API endpoint to retrieve data
 @app.route('/api/data', methods=['GET'])
 def get_data():
