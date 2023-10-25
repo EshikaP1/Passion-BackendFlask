@@ -1,14 +1,17 @@
 from flask import Flask, jsonify, request
 import pandas as pd
 
+# class provided by the Flask framework for creating web applications.
 app = Flask(__name__)
 
 # Load data from the CSV file
-data = pd.read_csv("api/cancer.csv")
+data = pd.read_csv("/home/eneter/vscode/Passion-BackendFlask/api/cancer.csv")
 
 import os
 
 # Get the directory of your Flask app's root
+# stores the root directory path of your Flask application.
+# This can be useful for various purposes, such as locating templates, static files, or other resources relative to your application's root directory
 app_root = os.path.dirname(os.path.abspath(__file__))  # Assuming this code is in your Flask app file
 
 # Create the full path to your CSV file
@@ -41,4 +44,6 @@ def process_state_input():
     return jsonify( "Received state_name:" + (state_name))
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=8115, debug=True)
+
+
