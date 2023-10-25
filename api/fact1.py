@@ -4,7 +4,7 @@ import pandas as pd
 app = Flask(__name__)
 
 # Load data from the CSV file
-data = pd.read_csv("/home/eneter/vscode/Passion-BackendFlask/api/cancer.csv")
+data = pd.read_csv("api/cancer.csv")
 
 import os
 
@@ -19,7 +19,9 @@ data = pd.read_csv(csv_path)
 
 
 # Define an API endpoint to retrieve data
+#when our user promts data, it will redirect here instead of another file. 
 @app.route('/api/data', methods=['GET'])
+#instead of having a separate file with endpoints, it is creating an enpoint here by using data as a variable
 def get_data():
     if data.empty:
         return jsonify({"error": "Data not available"}), 404
@@ -28,6 +30,7 @@ def get_data():
 # Define an API endpoint to receive state_name from the frontend
 @app.route('/backend_endpoint', methods=['POST'])  # Use POST to receive data from the frontend
 def process_state_input():
+    #since post was used to get data from the frontend, get_json wil retrieve data from the 
     state_data = request.get_json()
     state_name = state_data.get('state_name', '')
 
@@ -35,7 +38,7 @@ def process_state_input():
     # You can use it to filter the data or perform any other task
 
     # In this example, we'll return a message with the state_name
-    return jsonify({"result": f"Received state_name: {state_name}"})
+    return jsonify( "Received state_name:" + (state_name))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
