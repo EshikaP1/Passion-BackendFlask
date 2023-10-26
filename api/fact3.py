@@ -6,12 +6,17 @@ import os
 # Create a Flask application instance
 app = Flask(__name__)
 
+#usually refers to the API documentation or specification. 
+#This documentation serves as a detailed guide for developers who want to use the API in their applications.
 cancer_api = Blueprint('cancer_api', __name__, url_prefix='/api/data')
 api = Api(cancer_api)
 
 class CancerDataAPI:
     class _Read(Resource):
         def get(self):
+            #determine the directory path of the current Python script or module in which it is placed. 
+            #abspath: the absolute path of the current script file. 
+            # extract the directory (folder) path from a given file path.
             app_root = os.path.dirname(os.path.abspath(__file__))
             csv_path = os.path.join(app_root, 'cancer.csv')
             data = pd.read_csv(csv_path)
@@ -22,6 +27,8 @@ class CancerDataAPI:
     class _Create(Resource):
         def post(self):
             # Here, you can handle the creation of a new entry if needed
+            #create or add new data entries to a resource, such as creating a new object or record in a database.
+            # This might involve parsing request data, validating it, and then interacting with a database or performing other relevant operations.
             pass
 
     class _StateData(Resource):
@@ -34,7 +41,7 @@ class CancerDataAPI:
                 return jsonify({"error": "State data not found"}), 404
             result = {
                 "TotalPopulation": state_data["Total.Population"].values[0],
-                "LungTotal": state_data["Types.Lung.Total"].values[0]
+                "Total amount of death from lung cancer": state_data["Types.Lung.Total"].values[0]
             }
             return jsonify(result)
 
