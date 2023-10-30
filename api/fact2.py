@@ -44,7 +44,7 @@ api.add_resource(CancerDataAPI._StateData, '/state/<string:state_name>')
 
 if __name__ == "__main__":
     # Modify your test code as needed
-    server = "https://cancer0.stu.nighthawkcodingsociety.com/"  # Replace with your server URL
+    server = "http://localhost:5000/api/data/state/Nevada"  # Replace with your server URL
     url = server + "/api/data"
     responses = []  # Responses list
 

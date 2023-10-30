@@ -2,7 +2,6 @@ from flask import Flask, Blueprint, jsonify
 from flask_restful import Api, Resource
 import pandas as pd
 import os
-import matplotlib.pyplot as plt
 
 # Create a Flask application instance
 app = Flask(__name__)
@@ -42,25 +41,7 @@ class CancerDataAPI:
             #its asking for
             state_data = data[data['State'] == state_name]
             if state_data.empty:
-                return jsonify({"error": "State data not found"}), 404
-            # Sample data (replace with your actual data)
-            totalPopulation = 1000000
-            totalLungCancerDeaths = 5000
-
-            # Calculate the number of alive people
-            alive = totalPopulation - totalLungCancerDeaths
-
-            # Create a pie chart
-            labels = ['Alive', 'Lung Cancer Deaths']
-            sizes = [alive, totalLungCancerDeaths]
-            colors = ['green', 'red']
-
-            fig, ax = plt.subplots()
-            ax.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%', startangle=140)
-            ax.axis('equal')  # Equal aspect ratio ensures that the pie chart is drawn as a circle.
-
-            # Save the chart to a file (optional)
-            fig.savefig('pie_chart.png')
+                return jsonify({"error": "State data not found"}), 40
             result = {
                 "TotalPopulation": state_data["Total.Population"].values[0],
                 "Total amount of death from lung cancer": state_data["Types.Lung.Total"].values[0],
