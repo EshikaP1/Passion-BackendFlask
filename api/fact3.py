@@ -1,6 +1,7 @@
 from flask import Flask, Blueprint, jsonify
 from flask_restful import Api, Resource
 import pandas as pd
+from flask_cors import CORS
 import os
 
 # Create a Flask application instance
@@ -10,6 +11,8 @@ app = Flask(__name__)
 #This documentation serves as a detailed guide for developers who want to use the API in their applications.
 cancer_api = Blueprint('cancer_api', __name__, url_prefix='/api/data')
 api = Api(cancer_api)
+
+CORS(cancer_api)
 
 class CancerDataAPI:
     class _Read(Resource):
