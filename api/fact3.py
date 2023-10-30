@@ -64,6 +64,7 @@ class CancerDataAPI:
             result = {
                 "TotalPopulation": state_data["Total.Population"].values[0],
                 "Total amount of death from lung cancer": state_data["Types.Lung.Total"].values[0],
+                
             }
             return jsonify(result)
 
