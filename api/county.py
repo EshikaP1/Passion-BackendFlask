@@ -7,7 +7,7 @@ import os
 # Create a Flask application instance
 app = Flask(__name__)
 
-county_api = Blueprint('county_api', __name__, url_prefix='/api/data')
+county_api = Blueprint('http://localhost:5000/api/data/county/Riverside')
 api = Api(county_api)
 
 CORS(county_api)
