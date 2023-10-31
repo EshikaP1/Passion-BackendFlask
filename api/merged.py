@@ -8,6 +8,8 @@ import os
 app = Flask(__name__)
 
 # Create a blueprint for the first API
+#usually refers to the API documentation or specification. 
+#This documentation serves as a detailed guide for developers who want to use the API in their applications.
 county_api = Blueprint('county_api', __name__, url_prefix='/api/data/county')
 api_county = Api(county_api)
 
@@ -16,6 +18,10 @@ CORS(county_api)
 class CountyDataAPI:
     class _Read(Resource):
         def get(self):
+            #determine the directory path of the current Python script or module in which it was placed. 
+            #abspath: the absolute path of the current script file. 
+            # extract the directory (folder) path from a given file path.
+            # using this code enhances portability, maintainability, and collaboration while reducing the risk of errors and security vulnerabilities.
             app_root = os.path.dirname(os.path.abspath(__file__))
             csv_path = os.path.join(app_root, 'county.csv')
             data_county = pd.read_csv(csv_path)
@@ -25,7 +31,9 @@ class CountyDataAPI:
 
     class _Create(Resource):
         def post(self):
-            # Handle the creation of a new entry here if needed
+            # Here, you can handle the creation of a new entry if needed...this is because we are getting the input from the user(frontend) which is why post is called here and in frontend.
+            #create or add new data entries to a resource, such as creating a new object or record in a database.
+            # This might involve parsing request data, validating it, and then interacting with a database or performing other relevant operations.
             pass
 
     class _CountyData(Resource):
@@ -39,7 +47,9 @@ class CountyDataAPI:
             result = county_data.to_dict(orient='records')[0]
             return jsonify(result)
 
-# Define routes for the first API under the same application
+
+#This line is defining a route at the root of the API
+#This route is typically used to handle POST and GEt requests for creating new data entries.
 api_county.add_resource(CountyDataAPI._Read, '/county')
 api_county.add_resource(CountyDataAPI._Create, '/county/create')
 api_county.add_resource(CountyDataAPI._CountyData, '/county/<string:county_name>')
