@@ -6,12 +6,12 @@ import os
 
 app = Flask(__name__)
 
-cancer_api = Blueprint('cancer_api', __name__, url_prefix='/api/data')
-api = Api(cancer_api)
+county_api = Blueprint('county_api', __name__, url_prefix='/api/data')
+api = Api(county_api)
 
-CORS(cancer_api)
+CORS(county_api)
 
-class CancerDataAPI:
+class CountyDataAPI:
     class _Read(Resource):
         def get(self):
             app_root = os.path.dirname(os.path.abspath(__file__))
@@ -56,11 +56,11 @@ class CancerDataAPI:
             }
             return jsonify(result)
 
-api.add_resource(CancerDataAPI._Read, '/')
-api.add_resource(CancerDataAPI._Create, '/create')
-api.add_resource(CancerDataAPI._StateData, '/state/<string:state_name>')
+api.add_resource(CountyDataAPI._Read, '/')
+api.add_resource(CountyDataAPI._Create, '/create')
+api.add_resource(CountyDataAPI._StateData, '/state/<string:state_name>')
 
-app.register_blueprint(cancer_api)
+app.register_blueprint(county_api)
 
 if __name__ == "__main__":
     app.run(debug=True)
